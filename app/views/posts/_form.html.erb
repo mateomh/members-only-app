@@ -14,6 +14,7 @@
   <div class="actions">
     <%= form.label "Write your post" %>
     <%= form.text_area :content  %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
     <br>
     <%= form.submit %>
   </div>
