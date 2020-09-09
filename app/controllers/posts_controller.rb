@@ -1,3 +1,5 @@
+#rubocop: disable all
+
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :get_user
@@ -76,3 +78,5 @@ class PostsController < ApplicationController
     @user = current_user
   end
 end
+
+#rubocop: enable all
