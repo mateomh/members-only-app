@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
-<% if user_signed_in? %>
   <table>
     <tbody>
       <% @posts.each do |post| %>
@@ -10,23 +9,23 @@
             <div style="border: 1px solid black">
               <%= post.content %>
               <br>
-              <p>Date: <%= post.created_at %></p>
-              <p>Created by: <%= post.user.email %></p>
+              <% if user_signed_in? %>
+                <p>Date: <%= post.created_at %></p>
+                <p>Created by: <%= post.user.email %></p>
+              <% end %>
             </div>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-<%= link_to 'New Post', new_post_path %>
-
-<%= form_for current_user, url: "/users/sign_out", method: :delete do |f| %> 
-
-    <button type="submit">Log Out</button>
-
-<% end %>
+<% if user_signed_in? %>
+  <%= link_to 'New Post', new_post_path %>
+  <br>
+  <%= form_for current_user, url: "/users/sign_out", method: :delete do |f| %> 
+      <button type="submit">Log Out</button>
+  <% end %>
 <% else %>
   <%= link_to 'Sign in',  new_user_session_path %>
- <%= link_to 'Sign up',   new_user_registration_path %>
-
+  <%= link_to 'Sign up',   new_user_registration_path %>
 <% end %>
