@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+  <table>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <div style="border: 1px solid black">
+              <%= post.content %>
+              <br>
+              <% if user_signed_in? %>
+                <p>Date: <%= post.created_at %></p>
+                <p>Created by: <%= post.user.email %></p>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% if user_signed_in? %>
+  <%= link_to 'New Post', new_post_path %>
+<% end %>
+<br>
